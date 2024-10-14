@@ -78,12 +78,12 @@ sh <(wget -O - https://raw.githubusercontent.com/cyyself/wg-bench/master/openwrt
 | Asus TUF-AX6000 / MT7986AV       | OpenWRT Snapshot / 6.1.78        | 786 Mbits/sec  | |
 | JDCloud RE-CP-03 / MT7986A*      | OpenWRT Snapshot / 6.1.82        | 788 Mbits/sec  | default openwrt firewall settings |
 | Loongson 3A4000                  | Debian bookworm / 6.1.76         | 799 Mbits/sec  | |
-| GL-iNet MT6000 / MT7986          | OpenWRT Snapshot / 6.1.78        | 807 Mbits/sec  | |
 | TP-Link XDR 6088 / MT7986        | OpenWRT 23.05.0 / 5.15.134       | 818 Mbits/sec  | |
 | Redmi AX6000 / MT7986A           | OpenWRT 23.05.3 / 5.15.150       | 820 Mbits/sec  | |
 | Raspberry Pi 4 / BCM2711*        | OpenWRT 23.05.2 / 5.15.137       | 881 Mbits/sec  | CPU at 1.5GHz |
 | Asus TUF-AX4200 / MT7986AV       | OpenWRT Snapshot / 6.1.78        | 936 Mbits/sec  | |
 | JDCloud RE-CP-03 / MT7986A*      | OpenWRT Snapshot / 6.1.82        | 946 Mbits/sec  | with firewall disabled |
+| GL-iNet MT6000 / MT7986          | OpenWRT 23.05.5 / 5.15.167       | 981 Mbits/sec  | Run after `nft flush ruleset`[1](#nft-flush) / This device typically achieves ~800 Mbits/sec with firewall enabled |
 | Raspberry Pi 4 / BCM2711*        | OpenWRT 23.05.2 / 5.15.137       | 1.02 Gbits/sec | CPU at 2.0GHz |
 | HP T430 / Intel Celeron N4000    | Kiddin OpenWRT / 5.15.127        | 1.06 Gbits/sec | |
 | VMware Edge 620 / Intel Atom C3558 | Debian bookworm / 6.6.13-bpo   | 1.17 Gbits/sec | |
@@ -146,3 +146,7 @@ This program only benchmarks your CPU and Kernel network stack, the end-to-end p
 ## Discussion
 
 [A WireGuard comparison DB on OpenWRT forum](https://forum.openwrt.org/t/a-wireguard-comparison-db/187586)
+
+## NFT Flush
+
+OpenWRT users may find an increase in throughput when running the test immediately after `nft flush ruleset` which empties the firewall rules. This presents a raw performance of what the CPU is capable.
